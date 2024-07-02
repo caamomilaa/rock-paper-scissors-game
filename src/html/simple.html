@@ -20,13 +20,39 @@
     <main class="main">
       <div class="game-container" id="game-container">
         <div class="paper" data-item="paper">
-          <img src="../assets/images/icon-paper.svg" alt="" />
+          <img class="game-img" src="../assets/images/icon-paper.svg" alt="" />
         </div>
         <div class="scissors" data-item="scissors">
-          <img src="../assets/images/icon-scissors.svg" alt="" />
+          <img
+            class="game-img"
+            src="../assets/images/icon-scissors.svg"
+            alt=""
+          />
         </div>
         <div class="rock" data-item="rock">
-          <img src="../assets/images/icon-rock.svg" alt="" />
+          <img class="game-img" src="../assets/images/icon-rock.svg" alt="" />
+        </div>
+      </div>
+      <div class="move-container" id="move-container">
+        <div class="user-move">
+          <span>You picked</span>
+          <img
+            src="../assets/images/icon-rock.svg"
+            id="picked-user-image"
+            alt="picked user image"
+          />
+        </div>
+        <div class="winning-section">
+          <span class="winning-text" id="winning-text"></span>
+          <button class="button button--try" id="try-again">Try Again</button>
+        </div>
+        <div class="pc-move">
+          <span>PC picked</span>
+          <img
+            src="../assets/images/icon-rock.svg"
+            id="picked-pc-image"
+            alt="picked pc image"
+          />
         </div>
       </div>
     </main>
