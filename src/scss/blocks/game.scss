@@ -2,3 +2,36 @@
 .game-img{
     pointer-events: none;
 }
+.game-container{
+    margin: 75px;
+}
+.game-item{
+    display: flex;
+    padding: 20px;
+    border-radius: 100%;
+    width: 115px;
+    height: 115px;
+    background-color: white;
+    position: absolute;
+    &--scissors{
+        top: 250px;
+        left: 50px;
+    }
+    &--rock{
+        top: 250px;
+        left: 210px;
+    }
+    &--paper{
+        top: 400px;
+        left: 120px;
+    }
+}
+.scissors{
+    border: 15px solid #eb9f0e;
+}
+.paper{
+    border: 15px solid #5671f5;
+}
+.rock{
+    border: 15px solid #db2e4d;
+}

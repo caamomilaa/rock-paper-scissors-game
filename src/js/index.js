@@ -15,6 +15,9 @@ const pickedPcImageElement = document.getElementById("picked-pc-image");
 const pointsUserElement = document.getElementById("points-user");
 const pointsPcElement = document.getElementById("points-pc");
 const tryAgainElement = document.getElementById("try-again");
+const paperElement = document.getElementById("paper");
+const scissorsrElement = document.getElementById("scissors");
+const rockElement = document.getElementById("rock");
 
 const pcOptions = ["paper", "scissors", "rock"];
 
@@ -34,9 +37,9 @@ const gameOptions = {
 };
 
 const gameImage = {
-  paper: "../assets/images/icon-paper.svg",
-  rock: "../assets/images/icon-rock.svg",
-  scissors: "../assets/images/icon-scissors.svg",
+  paper: paperElement,
+  rock: rockElement,
+  scissors: scissorsrElement,
 };
 
 let userPoints = 0;
