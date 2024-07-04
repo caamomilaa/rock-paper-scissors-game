@@ -6,6 +6,7 @@ import "../scss/styles.scss";
 //consts que no sean del dom
 //let
 //funciones - solo una llamada dentro de la funcion, no es obligatorio, pero preferible.
+//acciones (como por ejemplo el if de este ejercicio), codigo que se ejecuta cuando carga la pag, sin esperar que pase nada
 //evento de escucha
 
 const gameContainerElement = document.getElementById("game-container");
@@ -14,32 +15,51 @@ const pickedUserImageElement = document.getElementById("picked-user-image");
 const pickedPcImageElement = document.getElementById("picked-pc-image");
 const pointsUserElement = document.getElementById("points-user");
 const pointsPcElement = document.getElementById("points-pc");
+const moveContainerElement = document.getElementById("move-container");
 const tryAgainElement = document.getElementById("try-again");
-const paperElement = document.getElementById("paper");
-const scissorsrElement = document.getElementById("scissors");
-const rockElement = document.getElementById("rock");
+const rulesElement = document.getElementById("rules");
 
 const pcOptions = ["paper", "scissors", "rock"];
 
 const gameOptions = {
-  paper: {
-    rock: true,
-    scissors: false,
+  rock: {
+    scissors: true,
+    lizard: true,
+    paper: false,
+    spock: false,
   },
   scissors: {
     paper: true,
+    lizard: true,
+    rock: false,
+    spock: false,
+  },
+  paper: {
+    rock: true,
+    spock: true,
+    lizard: false,
+    scissors: false,
+  },
+  lizard: {
+    paper: true,
+    spock: true,
+    scissors: false,
     rock: false,
   },
-  rock: {
+  spock: {
+    rock: true,
     scissors: true,
     paper: false,
+    lizard: false,
   },
 };
 
 const gameImage = {
-  paper: paperElement,
-  rock: rockElement,
-  scissors: scissorsrElement,
+  paper: "../assets/images/icon-paper.svg",
+  rock: "../assets/images/icon-rock.svg",
+  scissors: "../assets/images/icon-scissors.svg",
+  lizard: "../assets/images/icon-lizard.svg",
+  spock: "../assets/images/icon-spock.svg",
 };
 
 let userPoints = 0;
@@ -61,12 +81,28 @@ const whoWins = () => {
   }
   pointsUserElement.textContent = userPoints;
   pointsPcElement.textContent = pcPoints;
+  hideGame();
+};
+
+const changeResultClasses = () => {
+  const parentUser = pickedUserImageElement.parentElement;
+  const lastClassUser = parentUser.classList.length - 1;
+
+  const parentPC = pickedPcImageElement.parentElement;
+  const lastClassPC = parentPC.classList.length - 1;
+
+  parentUser.classList.remove(parentUser.classList[lastClassUser]);
+  parentUser.classList.add(userSelection);
+
+  parentPC.classList.remove(parentPC.classList[lastClassPC]);
+  parentPC.classList.add(pcSelection);
 };
 
 const changeResultImage = () => {
   pickedUserImageElement.src = gameImage[userSelection];
   pickedPcImageElement.src = gameImage[pcSelection];
   whoWins();
+  changeResultClasses();
 };
 
 const setPCSelection = () => {
@@ -80,8 +116,27 @@ const setUserSelection = (event) => {
   userSelection = event.target.dataset.item;
   setPCSelection();
 };
+const hideGame = () => {
+  gameContainerElement.classList.add("hide");
+  moveContainerElement.classList.remove("hide");
+};
+
+const hideMove = () => {
+  gameContainerElement.classList.remove("hide");
+  moveContainerElement.classList.add("hide");
+};
+
+if (document.body.dataset.mode === "advanced") {
+  pcOptions.push("spock", "lizard");
+}
 
 gameContainerElement.addEventListener("click", setUserSelection);
+tryAgainElement.addEventListener("click", hideMove);
+
+//log dentro de un if
+//antes de añadir una hay que quitar anterior
+
+//las clsases son un array -1
 
 //falta div que desaparezca y avanzado
 
