@@ -5,7 +5,7 @@ import "../scss/styles.scss";
 //elementos del dom
 //consts que no sean del dom
 //let
-//funciones
+//funciones - solo una llamada dentro de la funcion, no es obligatorio, pero preferible.
 //evento de escucha
 
 const gameContainerElement = document.getElementById("game-container");
@@ -60,22 +60,22 @@ const whoWins = () => {
   pointsPcElement.textContent = pcPoints;
 };
 
+const changeResultImage = () => {
+  pickedUserImageElement.src = gameImage[userSelection];
+  pickedPcImageElement.src = gameImage[pcSelection];
+  whoWins();
+};
+
 const setPCSelection = () => {
   const randomNumber = Math.floor(Math.random() * pcOptions.length);
   pcSelection = pcOptions[randomNumber];
   console.log(userSelection + "---" + pcSelection);
-  whoWins();
   changeResultImage();
 };
 
 const setUserSelection = (event) => {
   userSelection = event.target.dataset.item;
   setPCSelection();
-};
-
-const changeResultImage = () => {
-  pickedUserImageElement.src = gameImage[userSelection];
-  pickedPcImageElement.src = gameImage[pcSelection];
 };
 
 gameContainerElement.addEventListener("click", setUserSelection);
